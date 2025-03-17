@@ -13,6 +13,8 @@ import javax.swing.SwingUtilities;
 
 import org.apache.commons.io.FileUtils;
 
+import thejavalistener.fwk.util.MyColor;
+
 import javax.swing.*;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -36,10 +38,11 @@ public class ThmbImage extends JLabel
 {
     private int sizePx;
 
-    public ThmbImage(int sizePx) {
+	public ThmbImage(int sizePx) {
         this.sizePx = sizePx;
-        // Configuramos el tamaño preferido del thumbnail
         this.setPreferredSize(new Dimension(sizePx, sizePx));
+        setOpaque(true);
+        setBackground(MyColor.random());
     }
 
     public void loadImage(String imgName, String imgUrl) {

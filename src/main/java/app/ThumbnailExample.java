@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class ThumbnailExample {
     public static void main(String[] args) {
@@ -20,7 +21,9 @@ public class ThumbnailExample {
         ThmbImage thumbnail = new ThmbImage(sizePx);
 
         // Agregar al frame
-        frame.add(thumbnail,BorderLayout.EAST);
+        JPanel p = new JPanel();
+        p.add(thumbnail);
+        frame.add(p,BorderLayout.CENTER);
         
         JButton btn = new JButton("Load");
         btn.addActionListener(l->{
