@@ -22,9 +22,27 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 
-public class ThmbImage extends JLabel {
+import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import org.apache.commons.io.FileUtils;
 
-    public ThmbImage(String imgName, String imgUrl, int sizePx) {
+public class ThmbImage extends JLabel 
+{
+    private int sizePx;
+
+    public ThmbImage(int sizePx) {
+        this.sizePx = sizePx;
+        // Configuramos el tamaño preferido del thumbnail
+        this.setPreferredSize(new Dimension(sizePx, sizePx));
+    }
+
+    public void loadImage(String imgName, String imgUrl) {
         // Comienza el procesamiento en un hilo separado
         new Thread(() -> {
             try {
