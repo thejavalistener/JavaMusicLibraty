@@ -18,22 +18,22 @@
 		<spring.version>5.3.14</spring.version>
 		<hibernate.version>5.6.3.Final</hibernate.version>
 	</properties>
-	
-		<repositories>  
+
+	<repositories>
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
-		</repository>  
-	</repositories>  
+		</repository>
+	</repositories>
 
 	<dependencies>
-	
-			<dependency> 
+
+		<dependency>
 			<groupId>com.github.thejavalistener</groupId>
 			<artifactId>TheJavaListenerFramework</artifactId>
 			<version>main-SNAPSHOT</version>
-		</dependency>  
-	
+		</dependency>
+
 		<!-- LOG -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -78,25 +78,32 @@
 			<artifactId>p6spy</artifactId>
 			<version>3.9.1</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context-support</artifactId>
-		    <version>5.3.14</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.3.14</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
-		    <version>1.6.2</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
 		</dependency>
-		
-				<dependency>
+
+		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.11.0</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.13.0</version> <!-- Verifica si hay una versión más reciente -->
+		</dependency>
+
+
 
 	</dependencies>
 
