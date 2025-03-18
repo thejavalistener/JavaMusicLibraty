@@ -2,8 +2,20 @@ package app.mapping;
 
 public class Artist
 {
+	private int artistId;
 	private String spotifyId;
 	private String name;
+	
+	
+	
+	public int getArtistId()
+	{
+		return artistId;
+	}
+	public void setArtistId(int artistId)
+	{
+		this.artistId=artistId;
+	}
 	public String getSpotifyId()
 	{
 		return spotifyId;
