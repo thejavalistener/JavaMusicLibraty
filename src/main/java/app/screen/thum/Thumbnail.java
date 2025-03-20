@@ -5,19 +5,19 @@ import java.awt.BorderLayout;
 import app.mapping.Album;
 import thejavalistener.fwk.awt.panel.MyBorderLayout;
 
-public class Thumb extends MyBorderLayout
+public class Thumbnail extends MyBorderLayout
 {
 	private Album album;
 	private ThumbImage tmbImage;
 	private ThumbDetails tmbDetails;
 	
-	public Thumb(int thumbSize)
+	public Thumbnail(int thumbSize)
 	{
 		tmbImage = new ThumbImage(thumbSize);
 		add(tmbImage,BorderLayout.CENTER);
 		
 		tmbDetails = new ThumbDetails();
-		add(tmbDetails,BorderLayout.SOUTH);
+		add(tmbDetails.c(),BorderLayout.SOUTH);
 	}
 	
 	public void setAlbum(Album a)

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 import app.mapping.Album;
 import app.mapping.Artist;
+import thejavalistener.fwk.awt.panel.MyPanel;
+import thejavalistener.fwk.util.reflect.MyPackage;
 
 public class ThumbnailExample
 {
@@ -17,10 +19,11 @@ public class ThumbnailExample
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(650,450);
 
-
+		MyPanel.DEBUG_MODE = true;
+		
 		// Crear instancia de ThmbImage
 		int sizePx=350;
-		Thumb thumbnail=new Thumb(sizePx);
+		Thumbnail2 thumbnail=new Thumbnail2(sizePx);
 
 		// Agregar al frame
 		JPanel p=new JPanel();
