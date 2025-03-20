@@ -23,7 +23,7 @@ public class ThumbnailExample
 		
 		// Crear instancia de ThmbImage
 		int sizePx=350;
-		Thumbnail2 thumbnail=new Thumbnail2(sizePx);
+		Thumbnail thumbnail=new Thumbnail(sizePx);
 
 		// Agregar al frame
 		JPanel p=new JPanel();
@@ -32,7 +32,6 @@ public class ThumbnailExample
 
 		JButton btn=new JButton("Load");
 		btn.addActionListener(l -> {
-			
 			Album album = createAlbum();
 			thumbnail.setAlbum(album);
 		});

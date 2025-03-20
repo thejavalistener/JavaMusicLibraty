@@ -1,5 +1,7 @@
 package spotify;
 
+import java.sql.Date;
+
 public class Album
 {
 	private int albumId;
@@ -9,6 +11,7 @@ public class Album
 	private Integer recordedYear;
 	private Artist mainArtist;
 	private String coverUrl;
+	private Date addedAt;
 	
 	public int getAlbumId()
 	{
@@ -65,5 +68,13 @@ public class Album
 	public void setCoverUrl(String coverUrl)
 	{
 		this.coverUrl=coverUrl;
+	}
+	public Date getAddedAt()
+	{
+		return addedAt;
+	}
+	public void setAddedAt(Date addedAt)
+	{
+		this.addedAt=addedAt;
 	}
 }

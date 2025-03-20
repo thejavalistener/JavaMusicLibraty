@@ -4,7 +4,7 @@ import java.util.List;
 
 public class SpotifyService
 {
-	private String token;
+	private String token = null;
 	
 	public SpotifyService(String tk)
 	{
