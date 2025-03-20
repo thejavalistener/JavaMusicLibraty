@@ -6,8 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import app.mapping.Album;
-import app.mapping.Artist;
+import spotify.Album;
+import spotify.Artist;
 import thejavalistener.fwk.awt.panel.MyPanel;
 import thejavalistener.fwk.util.reflect.MyPackage;
 

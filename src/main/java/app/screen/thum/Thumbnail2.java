@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-import app.mapping.Album;
+import spotify.Album;
 import thejavalistener.fwk.awt.GridLayout2;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.link.MyLinkGrid;

@@ -1,20 +1,18 @@
-package app.mapping;
+package spotify;
 
-public class Artist
+public class Device
 {
-	private int artistId;
+	private int deviceId;
 	private String spotifyId;
 	private String name;
 	
-	
-	
-	public int getArtistId()
+	public int getDeviceId()
 	{
-		return artistId;
+		return deviceId;
 	}
-	public void setArtistId(int artistId)
+	public void setDeviceId(int deviceId)
 	{
-		this.artistId=artistId;
+		this.deviceId=deviceId;
 	}
 	public String getSpotifyId()
 	{
@@ -32,4 +30,6 @@ public class Artist
 	{
 		this.name=name;
 	}
+	
+	
 }

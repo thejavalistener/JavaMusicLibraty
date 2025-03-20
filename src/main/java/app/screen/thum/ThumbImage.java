@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 
 import org.apache.commons.io.FileUtils;
 
-import app.mapping.Album;
+import spotify.Album;
 import thejavalistener.fwk.util.MyColor;
 import thejavalistener.fwk.util.string.MyString;
 

@@ -3,7 +3,7 @@ package app.screen.thum;
 import java.awt.Color;
 import java.awt.Component;
 
-import app.mapping.Album;
+import spotify.Album;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.link.MyLinkGrid;
 

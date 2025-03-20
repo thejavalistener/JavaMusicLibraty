@@ -2,7 +2,7 @@ package app.screen.thum;
 
 import java.awt.BorderLayout;
 
-import app.mapping.Album;
+import spotify.Album;
 import thejavalistener.fwk.awt.panel.MyBorderLayout;
 
 public class Thumbnail extends MyBorderLayout
