@@ -10,6 +10,7 @@ import thejavalistener.fwk.awt.MyScrollPane;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.panel.MatrixLayout;
 import thejavalistener.fwk.awt.panel.MyBorderLayout;
+import thejavalistener.fwk.awt.panel.MyPanel;
 
 public class ThmSection
 {
@@ -22,11 +23,15 @@ public class ThmSection
 	{
 		contentPane = new MyBorderLayout();
 		
-		lnkTitle = new MyLink("");
+		lnkTitle = new MyLink(" ");
 		contentPane.add(lnkTitle.c(),BorderLayout.NORTH);
 		
-		matrix = new JPanel();
-		contentPane.add(new MyScrollPane(matrix),BorderLayout.CENTER);
+		matrix = new MyPanel(0,0,0,0);
+		matrix.setBorder(null);
+		
+		MyScrollPane msp = new MyScrollPane(matrix);
+		msp.setBorder(null);
+		contentPane.add(msp,BorderLayout.CENTER);
 	}
 	
 	private void _setBackground(Color c)
@@ -43,6 +48,11 @@ public class ThmSection
 	
 	public void setTitle(String t)
 	{
+		if( decorator!=null )
+		{
+			decorator.decoreSectionTitle(lnkTitle);
+		}
+
 		lnkTitle.setText(t);
 	}
 	
@@ -57,6 +67,7 @@ public class ThmSection
 		int nCols = decorator.getColumnCount();
 		int vGap = decorator.getVHGap()[0];
 		int hGap = decorator.getVHGap()[1];		
+		decorator.decoreSectionTitle(lnkTitle);
 		matrix.setLayout(new MatrixLayout(nCols,vGap,hGap));
 		_setBackground(decorator.getSectionBackground());
 	}

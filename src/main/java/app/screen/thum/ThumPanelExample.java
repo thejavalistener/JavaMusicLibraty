@@ -24,6 +24,7 @@ public class ThumPanelExample
 		// creo una seccion
 		ThmSection seccion = new ThmSection();
 		seccion.setDecorator(new ThmSectionDecoratorImple());
+		seccion.setTitle("The Beatles");
 		
 		frame.add(seccion.c(),BorderLayout.CENTER);
 		
@@ -32,7 +33,6 @@ public class ThumPanelExample
 			Thumbnail t = new Thumbnail(320);
 			t.setAlbum(Thumbnail.createDemoAlbum());
 			seccion.add(t);
-			seccion.setTitle(MyString.generateRandom('A','Z',10,15));
 		});
 
 		frame.add(btn,BorderLayout.SOUTH);
