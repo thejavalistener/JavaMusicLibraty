@@ -2,22 +2,34 @@ package app.screen.thum;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import org.apache.commons.io.FileUtils;
 import org.hibernate.internal.build.AllowSysOut;
 
 import spotify.Album;
 import spotify.Artist;
-import thejavalistener.fwk.awt.GridLayout2;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.link.MyLinkGrid;
+import thejavalistener.fwk.awt.panel.GridLayout2;
 import thejavalistener.fwk.awt.panel.MyInsets;
-import thejavalistener.fwk.awt.panel.ThumbnailDecorator;
 import thejavalistener.fwk.awt.testui.MyTestUI;
+import thejavalistener.fwk.util.MyColor;
 import thejavalistener.fwk.util.MyNumber;
+import thejavalistener.fwk.util.string.MyString;
 
 public class Thumbnail 
 {
@@ -32,7 +44,7 @@ public class Thumbnail
 	private ThumbImage tmbImage;
 	private MyLinkGrid grid;
 
-	private ThumbnailDecorator decorator = null;
+	private ThmDecorator decorator = null;
 	
 	public Thumbnail(int thumbSize)
 	{
@@ -64,68 +76,57 @@ public class Thumbnail
 		contentPane.add(grid.c());
 	}
 	
-	public void setDecorator(ThumbnailDecorator decorator)
+	public void setDecorator(ThmDecorator decorator)
 	{
 		this.decorator = decorator;
+
+		grid.setBackground(decorator.getThumbnailBackground());
+		contentPane.setBackground(decorator.getThumbnailBackground());		
+		decorator.decoreTitle(lnkTitle);
+		lnkTitle.c().validate();
+		decorator.decoreArtist(lnkArtist);
+		lnkArtist.c().validate();
+		decorator.decoreReleasedYear(lnkReaYear);
+		lnkReaYear.c().validate();
+		decorator.decoreRecordedYear(lnkRecYear);
+		lnkRecYear.c().validate();
+
 	}
 	
-//	public void setStyleX(ThumbnailStyle ts)
+//	public void setAlbum(Album a)
 //	{
-//		this.style = ts;
-//		grid.setBackground(ts.background);
-//		contentPane.setBackground(ts.background);
+//		this.album = a;
+//		tmbImage.load();
 //
-//		// titulo
-//		MyInsets.adjust(lnkTitle.getStyle().linkBackgroundInsets,3,0,0,0);
-//		Font fnt = new Font(ts.fontName, Font.BOLD, ts.titleFontSize);
-//		_setLinkStyle(lnkTitle,ts.background,ts.linkRolloverColor,ts.linkRolloverColor,fnt);
+//		grid.setBackground(decorator.getThumbnailBackground());
+//		contentPane.setBackground(decorator.getThumbnailBackground());
 //		
-//		// artista
-//		MyInsets.adjust(lnkArtist.getStyle().linkBackgroundInsets,-4,0,0,0);
-//		fnt = new Font(ts.fontName, Font.PLAIN, ts.artistFontSize);
-//		_setLinkStyle(lnkArtist,ts.background,ts.linkColor,ts.linkRolloverColor,fnt);
+//		decorator.decoreTitle(lnkTitle);
+//		lnkTitle.c().validate();
 //		
-//		// released
-//		fnt = new Font(ts.fontName, Font.PLAIN, ts.yearsFontSize);
-//		_setLinkStyle(lnkReaYear,ts.background,ts.linkColor,ts.linkRolloverColor,fnt);
-//		
-//		// recorded
-//		fnt = new Font(ts.fontName, Font.PLAIN, ts.yearsFontSize);
-//		_setLinkStyle(lnkRecYear,ts.background,ts.linkColor,ts.linkRolloverColor,fnt);
-//	}
+//		decorator.decoreArtist(lnkArtist);
+//		lnkArtist.c().validate();
 //
-//	private void _setLinkStyle(MyLink lnk,Color bg,Color lnkColor,Color lnkRolledOverColor,Font fnt)
-//	{
-//		lnk.getStyle().linkFont = fnt;
-//		lnk.getStyle().background = bg;
-//		lnk.getStyle().linkBackgroundUnselected = bg;		
-//		lnk.getStyle().linkBackgroundRolloverUnselected = bg;		
-//		lnk.getStyle().linkForegroundUnselected = lnkColor;
-//		lnk.getStyle().linkForegroundRolloverUnselected = lnkRolledOverColor;	
-//		//lnk.getStyle().linkBackgroundInsets = new Insets(0,0,0,0);
-//		lnk.c().validate();
+//		decorator.decoreReleasedYear(lnkReaYear);
+//		lnkReaYear.c().validate();
+//
+//		decorator.decoreRecordedYear(lnkRecYear);
+//		lnkRecYear.c().validate();
+//
+//		lnkTitle.setText(a.getTitle());
+//		lnkArtist.setText(a.getMainArtist().getName());
+//		lnkReaYear.setText(a.getReleasedYear().toString());
+//		
+//		if( a.getRecordedYear()!=null )
+//		{
+//			lnkRecYear.setText(a.getRecordedYear().toString()); 
+//		}		
 //	}
-
+	
 	public void setAlbum(Album a)
 	{
 		this.album = a;
-		tmbImage.setAlbum(a);
-
-		grid.setBackground(decorator.getThumbnailBackground());
-		contentPane.setBackground(decorator.getThumbnailBackground());
-
-		
-		decorator.decoreTitle(lnkTitle);
-		lnkTitle.c().validate();
-		
-		decorator.decoreArtist(lnkArtist);
-		lnkArtist.c().validate();
-
-		decorator.decoreReleasedYear(lnkReaYear);
-		lnkReaYear.c().validate();
-
-		decorator.decoreRecordedYear(lnkRecYear);
-		lnkRecYear.c().validate();
+		tmbImage.load();
 
 		lnkTitle.setText(a.getTitle());
 		lnkArtist.setText(a.getMainArtist().getName());
@@ -136,6 +137,7 @@ public class Thumbnail
 			lnkRecYear.setText(a.getRecordedYear().toString()); 
 		}		
 	}
+
 	
 	public Component c()
 	{
@@ -173,67 +175,109 @@ public class Thumbnail
 		return a;
 	}
 	
+	public class ThumbImage extends JLabel
+	{
+		private int sizePx;
+
+		public ThumbImage(int sizePx)
+		{
+			this.sizePx=sizePx;
+			this.setPreferredSize(new Dimension(sizePx,sizePx));
+			setOpaque(true);
+			setBackground(MyColor.random());
+		}
+
+		public void load()
+		{
+			String imgName=MyString.lpad(Integer.toString(album.getAlbumId()),'0',10)+".jpg";
+			String imgUrl=album.getCoverUrl();
+
+			// Comienza el procesamiento en un hilo separado
+			new Thread(() -> {
+				try
+				{
+					File imgFile=new File(imgName);
+
+					BufferedImage image;
+
+					if(imgFile.exists())
+					{
+						// Si el archivo ya existe, lo cargamos
+						image=ImageIO.read(imgFile);
+
+						// Verificamos si el tamaño coincide
+						if(image.getWidth()!=sizePx||image.getHeight()!=sizePx)
+						{
+							// Si no coincide, descargamos de nuevo
+							image=downloadAndResize(imgUrl,imgFile,sizePx);
+						}
+					}
+					else
+					{
+						// Si no existe, descargamos y procesamos
+						image=downloadAndResize(imgUrl,imgFile,sizePx);
+					}
+
+					// Convierte la imagen en un ImageIcon y la muestra
+					ImageIcon icon=new ImageIcon(image);
+					SwingUtilities.invokeLater(() -> setIcon(icon)); // Actualiza el
+																		// JLabel en
+																		// el hilo
+																		// de la UI
+
+				}
+				catch(IOException e)
+				{
+					e.printStackTrace();
+					SwingUtilities.invokeLater(() -> setText("Error al cargar la imagen")); // Muestra
+																							// un
+																							// error
+																							// en
+																							// la
+																							// UI
+				}
+			}).start();
+		}
+
+		// Método para descargar y redimensionar la imagen
+		private BufferedImage downloadAndResize(String imgUrl, File imgFile, int sizePx) throws IOException
+		{
+			// Descarga la imagen desde la URL
+			URL url=new URL(imgUrl);
+			File tempFile=new File("temp_download.jpg"); // Archivo temporal
+
+			FileUtils.copyURLToFile(url,tempFile);
+
+			// Carga la imagen descargada
+			BufferedImage image=ImageIO.read(tempFile);
+
+			// Redimensiona la imagen al tamaño deseado
+			image=resizeImage(image,sizePx,sizePx);
+
+			// Guarda la imagen redimensionada en el archivo indicado
+			ImageIO.write(image,"jpg",imgFile);
+
+			// Limpia el archivo temporal
+			tempFile.delete();
+
+			return image;
+		}
+
+		// Método para redimensionar imágenes
+		private BufferedImage resizeImage(BufferedImage originalImage, int width, int height)
+		{
+			BufferedImage resizedImage=new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+			Graphics2D g=resizedImage.createGraphics();
+			g.drawImage(originalImage,0,0,width,height,null);
+			g.dispose(); // Libera recursos
+			return resizedImage;
+		}
+	}
+	
 	public static void main(String[] args)
 	{
 		Thumbnail th = new Thumbnail(350);
-		th.setDecorator(new ThumbnailDecorator()
-		{
-			@Override
-			public Color getThumbnailBackground()
-			{
-				return new Color(29,29,29);
-			}
-			
-			@Override
-			public void decoreTitle(MyLink lnk)
-			{
-				lnk.getStyle().linkForegroundUnselected = new Color(249,249,249);
-				lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,16));
-				Insets i = lnk.getStyle().linkBackgroundInsets;
-				i.top = 7;
-			}				
-			
-			@Override
-			public void decoreArtist(MyLink lnk)
-			{
-				lnk.getStyle().linkForegroundUnselected = new Color(173,173,173);
-				lnk.getStyle().linkForegroundRolloverUnselected = new Color(249,249,249);
-				lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,14));
-				lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
-				lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
-				Insets i = lnk.getStyle().linkBackgroundInsets;
-				i.top = 0;
-				i.bottom = 3;
-			}
-				
-			@Override
-			public void decoreReleasedYear(MyLink lnk)
-			{
-				lnk.getStyle().linkForegroundUnselected = new Color(173,173,173);
-				lnk.getStyle().linkForegroundRolloverUnselected = new Color(249,249,249);
-				lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,14));
-				lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
-				lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
-				Insets i = lnk.getStyle().linkBackgroundInsets;
-				i.top = 0;
-				i.bottom = 5;
-			}
-			
-			@Override
-			public void decoreRecordedYear(MyLink lnk)
-			{
-				lnk.getStyle().linkForegroundUnselected = new Color(173,173,173);
-				lnk.getStyle().linkForegroundRolloverUnselected = new Color(249,249,249);
-				lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,14));
-				lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
-				lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
-				Insets i = lnk.getStyle().linkBackgroundInsets;
-				i.top = 0;
-				i.bottom = 5;
-			}
-			
-		});
-
+		th.setDecorator(new ThmDecoratorImple());
 		th.setAlbum(Thumbnail.createDemoAlbum());
 		MyTestUI.test(th.c()).pack().run();
 	}

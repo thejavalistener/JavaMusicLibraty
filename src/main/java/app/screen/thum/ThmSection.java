@@ -6,32 +6,30 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
-import thejavalistener.fwk.awt.MatrixLayout;
 import thejavalistener.fwk.awt.MyScrollPane;
 import thejavalistener.fwk.awt.link.MyLink;
+import thejavalistener.fwk.awt.panel.MatrixLayout;
 import thejavalistener.fwk.awt.panel.MyBorderLayout;
 
-public class ThumbPanel
+public class ThmSection
 {
 	private JPanel contentPane;
 	private MyLink lnkTitle;
 	private JPanel matrix;
-	private MyScrollPane scrollPane;
-	private Color thumbnailBackground = Color.RED;
+	private ThmSectionDecorator decorator;
 	
-	
-	public ThumbPanel(int n)
+	public ThmSection()
 	{
 		contentPane = new MyBorderLayout();
 		
 		lnkTitle = new MyLink("");
 		contentPane.add(lnkTitle.c(),BorderLayout.NORTH);
 		
-		matrix = new JPanel(new MatrixLayout(n,20,20));
-		contentPane.add(scrollPane = new MyScrollPane(matrix),BorderLayout.CENTER);
+		matrix = new JPanel();
+		contentPane.add(new MyScrollPane(matrix),BorderLayout.CENTER);
 	}
 	
-	public void setBackground(Color c)
+	private void _setBackground(Color c)
 	{
 		contentPane.setBackground(c);
 		matrix.setBackground(c);
@@ -39,7 +37,7 @@ public class ThumbPanel
 		
 	public void add(Thumbnail t)
 	{
-//		t.setBackground(thumbnailBackground);
+		t.setDecorator(decorator.getThmbnailDecorator());
 		matrix.add(t.c());
 	}
 	
@@ -53,8 +51,13 @@ public class ThumbPanel
 		return contentPane;
 	}
 
-	public void setThumbnailBackgroundX(Color color)
+	public void setDecorator(ThmSectionDecorator decorator)
 	{
-		thumbnailBackground = color;
+		this.decorator = decorator;
+		int nCols = decorator.getColumnCount();
+		int vGap = decorator.getVHGap()[0];
+		int hGap = decorator.getVHGap()[1];		
+		matrix.setLayout(new MatrixLayout(nCols,vGap,hGap));
+		_setBackground(decorator.getSectionBackground());
 	}
 }
