@@ -27,7 +27,7 @@ public class ThumbnailExample
 
 		// Agregar al frame
 		JPanel p=new JPanel();
-		p.add(thumbnail);
+		p.add(thumbnail.c());
 		frame.add(p,BorderLayout.CENTER);
 
 		JButton btn=new JButton("Load");

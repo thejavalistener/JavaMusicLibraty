@@ -1,10 +1,12 @@
 package app.screen.thum;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JPanel;
 
+import thejavalistener.fwk.awt.MatrixLayout;
 import thejavalistener.fwk.awt.MyScrollPane;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.panel.MyBorderLayout;
@@ -13,8 +15,10 @@ public class ThumbPanel
 {
 	private JPanel contentPane;
 	private MyLink lnkTitle;
-	private JPanel panel;
+	private JPanel matrix;
 	private MyScrollPane scrollPane;
+	private Color thumbnailBackground = Color.RED;
+	
 	
 	public ThumbPanel(int n)
 	{
@@ -23,13 +27,20 @@ public class ThumbPanel
 		lnkTitle = new MyLink("");
 		contentPane.add(lnkTitle.c(),BorderLayout.NORTH);
 		
-		panel = new JPanel(new MatrixLayout(n,20,20));
-		contentPane.add(scrollPane = new MyScrollPane(panel),BorderLayout.CENTER);
+		matrix = new JPanel(new MatrixLayout(n,20,20));
+		contentPane.add(scrollPane = new MyScrollPane(matrix),BorderLayout.CENTER);
 	}
 	
+	public void setBackground(Color c)
+	{
+		contentPane.setBackground(c);
+		matrix.setBackground(c);
+	}
+		
 	public void add(Thumbnail t)
 	{
-		panel.add(t);
+//		t.setBackground(thumbnailBackground);
+		matrix.add(t.c());
 	}
 	
 	public void setTitle(String t)
@@ -40,5 +51,10 @@ public class ThumbPanel
 	public Component c()
 	{
 		return contentPane;
+	}
+
+	public void setThumbnailBackgroundX(Color color)
+	{
+		thumbnailBackground = color;
 	}
 }
