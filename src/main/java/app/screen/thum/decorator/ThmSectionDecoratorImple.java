@@ -1,4 +1,4 @@
-package app.screen.thum;
+package app.screen.thum.decorator;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,6 +8,8 @@ import thejavalistener.fwk.awt.link.MyLink;
 
 public class ThmSectionDecoratorImple implements ThmSectionDecorator
 {
+	private ThmDecorator thmDecorator = new ThmDecoratorImple();
+	
 	@Override
 	public Color getSectionBackground()
 	{
@@ -33,7 +35,7 @@ public class ThmSectionDecoratorImple implements ThmSectionDecorator
 	@Override
 	public ThmDecorator getThmbnailDecorator()
 	{
-		return new ThmDecoratorImple();
+		return thmDecorator;
 	}
 
 	@Override

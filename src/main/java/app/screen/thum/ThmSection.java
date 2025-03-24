@@ -6,6 +6,7 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
+import app.screen.thum.decorator.ThmSectionDecorator;
 import thejavalistener.fwk.awt.MyScrollPane;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.panel.MatrixLayout;
@@ -29,9 +30,7 @@ public class ThmSection
 		matrix = new MyPanel(0,0,0,0);
 		matrix.setBorder(null);
 		
-		MyScrollPane msp = new MyScrollPane(matrix);
-		msp.setBorder(null);
-		contentPane.add(msp,BorderLayout.CENTER);
+		contentPane.add(matrix,BorderLayout.CENTER);
 	}
 	
 	private void _setBackground(Color c)

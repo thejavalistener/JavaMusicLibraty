@@ -1,4 +1,4 @@
-package app.screen.thum;
+package app.screen.thum.decorator;
 
 import java.awt.Color;
 

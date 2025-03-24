@@ -20,6 +20,8 @@ import javax.swing.SwingUtilities;
 import org.apache.commons.io.FileUtils;
 import org.hibernate.internal.build.AllowSysOut;
 
+import app.screen.thum.decorator.ThmDecorator;
+import app.screen.thum.decorator.ThmDecoratorImple;
 import spotify.Album;
 import spotify.Artist;
 import thejavalistener.fwk.awt.link.MyLink;
