@@ -27,8 +27,7 @@ public class ThmPage
 		contentPane.setBorder(null);
 		ccontentPane = new MyPanel(0,0,0,0);
 		ccontentPane.setBorder(null);
-//		ccontentPane.setLayout(new GridLayout2(0,1));
-		ccontentPane.setLayout(new VerticalFlowLayout());
+		ccontentPane.setLayout(new GridLayout2(0,1,0,0));
 		
 		contentPane.add(scrollPane=new MyScrollPane(ccontentPane),BorderLayout.CENTER);
 	}

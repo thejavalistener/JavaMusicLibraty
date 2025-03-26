@@ -95,36 +95,6 @@ public class Thumbnail
 
 	}
 	
-//	public void setAlbum(Album a)
-//	{
-//		this.album = a;
-//		tmbImage.load();
-//
-//		grid.setBackground(decorator.getThumbnailBackground());
-//		contentPane.setBackground(decorator.getThumbnailBackground());
-//		
-//		decorator.decoreTitle(lnkTitle);
-//		lnkTitle.c().validate();
-//		
-//		decorator.decoreArtist(lnkArtist);
-//		lnkArtist.c().validate();
-//
-//		decorator.decoreReleasedYear(lnkReaYear);
-//		lnkReaYear.c().validate();
-//
-//		decorator.decoreRecordedYear(lnkRecYear);
-//		lnkRecYear.c().validate();
-//
-//		lnkTitle.setText(a.getTitle());
-//		lnkArtist.setText(a.getMainArtist().getName());
-//		lnkReaYear.setText(a.getReleasedYear().toString());
-//		
-//		if( a.getRecordedYear()!=null )
-//		{
-//			lnkRecYear.setText(a.getRecordedYear().toString()); 
-//		}		
-//	}
-	
 	public void setAlbum(Album a)
 	{
 		this.album = a;
@@ -139,7 +109,6 @@ public class Thumbnail
 			lnkRecYear.setText(a.getRecordedYear().toString()); 
 		}		
 	}
-
 	
 	public Component c()
 	{
