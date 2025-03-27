@@ -1,6 +1,5 @@
 package app.screen.thum;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,46 +8,36 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import thejavalistener.fwk.awt.MyAwt;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.link.MyLinkGroup;
+import thejavalistener.fwk.awt.panel.GridLayout2;
 import thejavalistener.fwk.awt.panel.MatrixLayout;
-import thejavalistener.fwk.awt.panel.MyBorderLayout;
-import thejavalistener.fwk.awt.splitpane.MySplitPane;
-import thejavalistener.fwk.util.MyColor;
 
-public class ThmControls
+public class ThmControls_BKP
 {
 	private MyLinkGroup lnkGrpFilters;
 	private MyLinkGroup lnkGrpLabels;
 
-	private MySplitPane splitPane;
 	private JPanel contentPane;
-	private JPanel pLabels;
 	private JPanel pFilters;
+	private JPanel pLabels;
 	
 	private Map<String,List<String>> labels;
 	
-	public ThmControls()
+	public ThmControls_BKP()
 	{
-		pFilters = new JPanel(new MatrixLayout(1,0,0));
-		pFilters.setBackground(MyColor.random());
-
-		pLabels = new JPanel(new MatrixLayout(1,0,0));
-		pLabels.setBackground(MyColor.random());
-
-		splitPane = new MySplitPane(MySplitPane.HORIZONTAL,pFilters,pLabels);
-		splitPane.setDividerSize(10);
-		splitPane.setDividerLocation(100);
-		
-		contentPane = new  MyBorderLayout();
-		contentPane.add(splitPane.c(),BorderLayout.CENTER);
-
-//		contentPane.add(new Separator(0.8));
-				
-		lnkGrpFilters = new MyLinkGroup();
-		lnkGrpLabels = new MyLinkGroup();
+		contentPane = new JPanel(new GridLayout2(2,1,0,0));
 	
+		lnkGrpFilters = new MyLinkGroup();
+		pFilters = new JPanel(new MatrixLayout(1,0,0));
+		
+		lnkGrpLabels = new MyLinkGroup();
+		pLabels = new JPanel(new MatrixLayout(1,0,0));
+	
+		contentPane.add(pFilters);
+//		contentPane.add(new Separator(0.8));
+		contentPane.add(pLabels);
+		
 		labels = new HashMap<>();
 	}
 	
@@ -70,7 +59,6 @@ public class ThmControls
 		MyLink lnk = new MyLink(label);
 		lnkGrpLabels.addLink(lnk);		
 
-		
 		pLabels.add(lnk.c());
 		contentPane.validate();
 	}
