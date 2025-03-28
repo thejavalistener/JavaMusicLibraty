@@ -11,29 +11,27 @@ public class ThmControlsExample
 	{
 		MyAwt.setWindowsLookAndFeel();
 		
-		ThmControls tmpc = new ThmControls();
-		tmpc.setDecorator(new ThmControlsDecoratorImple());
-		tmpc.setListener(new EscuchaControls());
-		MyTestUI.test(tmpc.c()).addButton("Add filter",e->tmpc.addFilter(MyString.generateRandom()))
-							   .addButton("Add Label",e->tmpc.addLabel(MyString.generateRandom()))
-							   .addButton("Remove Labels",e->tmpc.removeLabels())
+		ThmControls thmc = new ThmControls();
+		thmc.setDecorator(new ThmControlsDecoratorImple());
+		thmc.setListener(new EscuchaControls());
+		MyTestUI.test(thmc.c()).addButton("Add filter",e->thmc.addFilter(MyString.generateRandom()))
+							   .addButton("Add Label",e->thmc.addLabel(MyString.generateRandom()))
+							   .addButton("Remove Labels",e->thmc.removeLabels())
 		                       .run();
 	}
 	
 	static class EscuchaControls implements ThmControlsListener
 	{
-
 		@Override
-		public void filterSelected(String filter)
+		public void filterSelected(ThmControls thmc,String filter)
 		{
-			System.out.println("Filter: "+filter);
+			thmc.setLabelTitle(filter);
 		}
 
 		@Override
-		public void labelSelected(String filter, String label)
+		public void labelSelected(ThmControls thmc,String filter, String label)
 		{
 			System.out.println("Filter: "+filter+", Label: "+label);
 		}
-		
 	}
 }

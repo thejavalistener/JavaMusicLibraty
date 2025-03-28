@@ -25,10 +25,14 @@ public class ThmControls
 	private JPanel contentPane;
 	private JPanel pLabels;
 	private JPanel pFilters;
+
+	private MyLink lnkFilterTitle;
+	private MyLink lnkLabelTitle;
 	
 	private ThmControlsDecorator decorator;
-	
 	private ThmControlsListener listener;
+	
+	private ThmControls outer = this;
 	
 	public ThmControls()
 	{
@@ -49,6 +53,9 @@ public class ThmControls
 		lnkGrpFilters.setActionListener(new EscuchaFilter());
 		lnkGrpLabels = new MyLinkGroup();	
 		lnkGrpLabels.setActionListener(new EscuchaLabel());
+		
+		lnkFilterTitle = new MyLink("");
+		lnkLabelTitle = new MyLink("");
 	}
 	
 	public void setDecorator(ThmControlsDecorator decorator)
@@ -57,7 +64,7 @@ public class ThmControls
 		splitPane.setDividerLocation(decorator.getDividerLocation());
 		splitPane.setDividerColor(decorator.getDividerColor());
 		pFilters.setBackground(decorator.getFiltersBackground());
-		pLabels.setBackground(decorator.getLabelsBackground());
+		pLabels.setBackground(decorator.getLabelsBackground());		
 	}
 	
 	public void addFilter(String filter)
@@ -68,16 +75,24 @@ public class ThmControls
 		{
 			decorator.decoreFilter(lnk);
 		}
-		
+	
 		lnkGrpFilters.addLink(lnk);
 
 		pFilters.add(lnk.c());
 		contentPane.validate();
 	}
 	
+	private int labelCount = 0;
 	public void addLabel(String label)
-	{
+	{			
+		if( labelCount++==0 && decorator!=null )
+		{
+			decorator.decoreLabelTitle(lnkLabelTitle);
+			pLabels.add(lnkLabelTitle.c());
+		}
+		
 		MyLink lnk = new MyLink(label);
+		
 		
 		if( decorator!=null )
 		{
@@ -92,9 +107,41 @@ public class ThmControls
 	
 	public void removeLabels()
 	{
-		pLabels.removeAll();
+		int n = pLabels.getComponentCount()-1;
+		while(pLabels.getComponentCount()>1 )
+		{
+			Component cmp = pLabels.getComponent(n);
+			if( !cmp.equals(lnkLabelTitle.c()) )
+			{
+				pLabels.remove(cmp);
+				n--;
+			}
+		}
+
 		pLabels.revalidate();
 		pLabels.repaint();
+		
+		labelCount = 0;
+	}	
+	
+	public void setSelectedFilter(String filter)
+	{
+		throw new RuntimeException("No implementado todavía");
+	}
+	
+	public void setSelectedLabel(String label)
+	{
+		throw new RuntimeException("No implementado todavía");
+	}
+
+	public void setLabelTitle(String title)
+	{
+		lnkLabelTitle.setText(title);
+	}
+	
+	public void setFilterTitle(String title)
+	{
+		lnkFilterTitle.setText(title);
 	}
 	
 	public void setListener(ThmControlsListener lst)
@@ -115,7 +162,7 @@ public class ThmControls
 			if(listener!=null)
 			{
 				String filter = lnkGrpFilters.getSelected().getText();
-				listener.filterSelected(filter);
+				listener.filterSelected(outer,filter);
 			}
 		}
 	}
@@ -126,7 +173,7 @@ public class ThmControls
 		{
 			String filter = lnkGrpFilters.getSelected().getText();
 			String label = lnkGrpLabels.getSelected().getText();
-			listener.labelSelected(filter,label);
+			listener.labelSelected(outer,filter,label);
 		}
 	}
 }

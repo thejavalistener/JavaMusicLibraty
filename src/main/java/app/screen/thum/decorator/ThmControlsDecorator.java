@@ -12,4 +12,6 @@ public interface ThmControlsDecorator
 	public Color getDividerColor();
 	public void decoreFilter(MyLink lnk);
 	public void decoreLabel(MyLink lnk);
+	public void decoreFilterTitle(MyLink lnk);
+	public void decoreLabelTitle(MyLink lnk);
 }
