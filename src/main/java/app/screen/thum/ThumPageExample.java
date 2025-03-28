@@ -24,6 +24,7 @@ public class ThumPageExample
 		
 		mtu.addButton("Add Section",new EscuchaAddSection());		
 		mtu.addButton("Add Thumbnail",new EscuchaAddThumbnail());
+		mtu.addButton("Remove Sections",e->page.removeSections());
 		
 		mtu.maximize().run();
 	}	

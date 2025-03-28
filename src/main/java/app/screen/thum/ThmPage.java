@@ -45,6 +45,13 @@ public class ThmPage
 		
 		ccontentPane.revalidate();
 	}
+	
+	public void removeSections()
+	{
+		ccontentPane.removeAll();
+		ccontentPane.revalidate();
+		ccontentPane.repaint();
+	}
 		
 	public Component c()
 	{

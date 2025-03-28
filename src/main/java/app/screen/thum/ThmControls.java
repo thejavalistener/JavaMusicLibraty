@@ -1,15 +1,14 @@
 package app.screen.thum;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-import thejavalistener.fwk.awt.MyAwt;
+import app.screen.thum.decorator.ThmControlsDecorator;
 import thejavalistener.fwk.awt.link.MyLink;
 import thejavalistener.fwk.awt.link.MyLinkGroup;
 import thejavalistener.fwk.awt.panel.MatrixLayout;
@@ -27,7 +26,9 @@ public class ThmControls
 	private JPanel pLabels;
 	private JPanel pFilters;
 	
-	private Map<String,List<String>> labels;
+	private ThmControlsDecorator decorator;
+	
+	private ThmControlsListener listener;
 	
 	public ThmControls()
 	{
@@ -38,45 +39,94 @@ public class ThmControls
 		pLabels.setBackground(MyColor.random());
 
 		splitPane = new MySplitPane(MySplitPane.HORIZONTAL,pFilters,pLabels);
-		splitPane.setDividerSize(10);
+		splitPane.setDividerSize(1);
 		splitPane.setDividerLocation(100);
 		
 		contentPane = new  MyBorderLayout();
 		contentPane.add(splitPane.c(),BorderLayout.CENTER);
 
-//		contentPane.add(new Separator(0.8));
-				
 		lnkGrpFilters = new MyLinkGroup();
-		lnkGrpLabels = new MyLinkGroup();
+		lnkGrpFilters.setActionListener(new EscuchaFilter());
+		lnkGrpLabels = new MyLinkGroup();	
+		lnkGrpLabels.setActionListener(new EscuchaLabel());
+	}
 	
-		labels = new HashMap<>();
+	public void setDecorator(ThmControlsDecorator decorator)
+	{
+		this.decorator = decorator;
+		splitPane.setDividerLocation(decorator.getDividerLocation());
+		splitPane.setDividerColor(decorator.getDividerColor());
+		pFilters.setBackground(decorator.getFiltersBackground());
+		pLabels.setBackground(decorator.getLabelsBackground());
 	}
 	
 	public void addFilter(String filter)
 	{
-		labels.put(filter,new ArrayList<>());
-		
 		MyLink lnk = new MyLink(filter);
+		
+		if( decorator!=null )
+		{
+			decorator.decoreFilter(lnk);
+		}
+		
 		lnkGrpFilters.addLink(lnk);
 
 		pFilters.add(lnk.c());
 		contentPane.validate();
 	}
 	
-	public void addLabel(String filter,String label)
+	public void addLabel(String label)
 	{
-		labels.get(filter).add(label);
-		
 		MyLink lnk = new MyLink(label);
+		
+		if( decorator!=null )
+		{
+			decorator.decoreLabel(lnk);
+		}
+
 		lnkGrpLabels.addLink(lnk);		
 
-		
 		pLabels.add(lnk.c());
 		contentPane.validate();
+	}
+	
+	public void removeLabels()
+	{
+		pLabels.removeAll();
+		pLabels.revalidate();
+		pLabels.repaint();
+	}
+	
+	public void setListener(ThmControlsListener lst)
+	{
+		this.listener = lst;
 	}
 	
 	public Component c()
 	{
 		return contentPane;
+	}
+	
+	class EscuchaFilter implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			if(listener!=null)
+			{
+				String filter = lnkGrpFilters.getSelected().getText();
+				listener.filterSelected(filter);
+			}
+		}
+	}
+	class EscuchaLabel implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			String filter = lnkGrpFilters.getSelected().getText();
+			String label = lnkGrpLabels.getSelected().getText();
+			listener.labelSelected(filter,label);
+		}
 	}
 }
