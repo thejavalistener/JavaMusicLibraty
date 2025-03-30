@@ -14,4 +14,6 @@ public interface ThmControlsDecorator
 	public void decoreLabel(MyLink lnk);
 	public void decoreFilterTitle(MyLink lnk);
 	public void decoreLabelTitle(MyLink lnk);
+	public String getDefaultFilterTitle();
+	public String getDefaultLabelTitle();
 }

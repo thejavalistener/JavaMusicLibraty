@@ -40,7 +40,6 @@ public class ThmControls
 		pFilters.setBackground(MyColor.random());
 
 		pLabels = new JPanel(new MatrixLayout(1,0,0));
-		pLabels.setBackground(MyColor.random());
 
 		splitPane = new MySplitPane(MySplitPane.HORIZONTAL,pFilters,pLabels);
 		splitPane.setDividerSize(1);
@@ -56,6 +55,10 @@ public class ThmControls
 		
 		lnkFilterTitle = new MyLink("");
 		lnkLabelTitle = new MyLink("");
+				
+		pFilters.add(lnkFilterTitle.c());
+		pLabels.add(lnkLabelTitle.c());
+		
 	}
 	
 	public void setDecorator(ThmControlsDecorator decorator)
@@ -64,7 +67,13 @@ public class ThmControls
 		splitPane.setDividerLocation(decorator.getDividerLocation());
 		splitPane.setDividerColor(decorator.getDividerColor());
 		pFilters.setBackground(decorator.getFiltersBackground());
-		pLabels.setBackground(decorator.getLabelsBackground());		
+		pLabels.setBackground(decorator.getLabelsBackground());	
+
+		decorator.decoreFilterTitle(lnkFilterTitle);
+		lnkFilterTitle.setText(decorator.getDefaultFilterTitle());
+
+		lnkLabelTitle.setText(decorator.getDefaultLabelTitle());
+		decorator.decoreLabelTitle(lnkLabelTitle);
 	}
 	
 	public void addFilter(String filter)
@@ -82,17 +91,9 @@ public class ThmControls
 		contentPane.validate();
 	}
 	
-	private int labelCount = 0;
 	public void addLabel(String label)
 	{			
-		if( labelCount++==0 && decorator!=null )
-		{
-			decorator.decoreLabelTitle(lnkLabelTitle);
-			pLabels.add(lnkLabelTitle.c());
-		}
-		
 		MyLink lnk = new MyLink(label);
-		
 		
 		if( decorator!=null )
 		{
@@ -121,7 +122,7 @@ public class ThmControls
 		pLabels.revalidate();
 		pLabels.repaint();
 		
-		labelCount = 0;
+		lnkLabelTitle.setText(decorator.getDefaultLabelTitle());
 	}	
 	
 	public void setSelectedFilter(String filter)
@@ -162,7 +163,7 @@ public class ThmControls
 			if(listener!=null)
 			{
 				String filter = lnkGrpFilters.getSelected().getText();
-				listener.filterSelected(outer,filter);
+				listener.filterSelected(outer,filter.toUpperCase());
 			}
 		}
 	}

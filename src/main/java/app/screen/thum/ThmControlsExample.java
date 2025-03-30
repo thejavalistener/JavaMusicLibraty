@@ -14,8 +14,8 @@ public class ThmControlsExample
 		ThmControls thmc = new ThmControls();
 		thmc.setDecorator(new ThmControlsDecoratorImple());
 		thmc.setListener(new EscuchaControls());
-		MyTestUI.test(thmc.c()).addButton("Add filter",e->thmc.addFilter(MyString.generateRandom()))
-							   .addButton("Add Label",e->thmc.addLabel(MyString.generateRandom()))
+		MyTestUI.test(thmc.c()).addButton("Add filter",e->thmc.addFilter(MyString.generateRandom().toLowerCase()))
+							   .addButton("Add Label",e->thmc.addLabel(MyString.generateRandom().toLowerCase()))
 							   .addButton("Remove Labels",e->thmc.removeLabels())
 		                       .run();
 	}
