@@ -65,6 +65,6 @@ public class ThmDecoratorImple implements ThmDecorator
 	@Override
 	public int getImageSize()
 	{
-		return 300;
+		return 280;
 	}
 }
