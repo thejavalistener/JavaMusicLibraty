@@ -23,6 +23,18 @@ public class ThmPageDecoratorImple implements ThmPageDecorator
 	{
 		return 35;
 	}
+	
+	@Override
+	public int getScrollbarWidth()
+	{
+		return 7;
+	}
+	
+	@Override
+	public Color getScrollbarForeground()
+	{
+		return new Color(173,173,173);
+	}
 
 	@Override
 	public ThmSectionDecorator getSectionDecorator()

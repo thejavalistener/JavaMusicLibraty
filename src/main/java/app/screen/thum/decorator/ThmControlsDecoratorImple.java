@@ -30,7 +30,7 @@ public class ThmControlsDecoratorImple implements ThmControlsDecorator
 	@Override
 	public int getDividerLocation()
 	{
-		return 100;
+		return 150;
 	}
 	
 	@Override

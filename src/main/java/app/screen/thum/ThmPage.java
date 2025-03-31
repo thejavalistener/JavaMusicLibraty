@@ -1,10 +1,12 @@
 package app.screen.thum;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.UIManager;
 
 import app.screen.thum.decorator.ThmPageDecorator;
 import thejavalistener.fwk.awt.MyScrollPane;
@@ -17,7 +19,7 @@ public class ThmPage
 	private JPanel contentPane;
 	private JPanel ccontentPane;
 	
-	private MyScrollPane scrollPane;
+	private MyScrollPane2 scrollPane;
 	
 	private ThmPageDecorator decorator;
 	
@@ -29,7 +31,16 @@ public class ThmPage
 		ccontentPane.setBorder(null);
 		ccontentPane.setLayout(new GridLayout2(0,1,0,0));
 		
-		contentPane.add(scrollPane=new MyScrollPane(ccontentPane),BorderLayout.CENTER);
+		contentPane.add(scrollPane=new MyScrollPane2(ccontentPane),BorderLayout.CENTER);
+		scrollPane.setBorder(null);
+	}
+	
+	public ThmSection createSection(String title)
+	{
+		ThmSection section = new ThmSection();
+		section.setTitle(title);
+		addSection(section);
+		return section;
 	}
 	
 	public void addSection(ThmSection section)
@@ -43,6 +54,7 @@ public class ThmPage
 		p.add(section.c(),BorderLayout.CENTER);
 		ccontentPane.add(p);
 		
+		scrollPane.revalidate();
 		ccontentPane.revalidate();
 	}
 	
@@ -62,6 +74,9 @@ public class ThmPage
 	{
 		contentPane.setBackground(decorator.getPageBackground());
 		ccontentPane.setBackground(decorator.getPageBackground());
+		
+		scrollPane.setBackground(decorator.getPageBackground());
+		scrollPane.configureScrollBars(decorator.getScrollbarWidth(),decorator.getScrollbarForeground());
 		
 		JScrollBar vScrollBar = scrollPane.getVerticalScrollBar();
 

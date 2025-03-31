@@ -10,4 +10,6 @@ public interface ThmPageDecorator
 	public int getSectionGap();
 	public int getScrollbarSpeed();
 	public ThmSectionDecorator getSectionDecorator();
+	public int getScrollbarWidth();
+	public Color getScrollbarForeground();
 }

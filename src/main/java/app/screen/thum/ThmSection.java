@@ -67,7 +67,7 @@ public class ThmSection
 		int vGap = decorator.getVHGap()[0];
 		int hGap = decorator.getVHGap()[1];		
 		decorator.decoreSectionTitle(lnkTitle);
-		matrix.setLayout(new MatrixLayout(nCols,20,20));
+		matrix.setLayout(new MatrixLayout(nCols,20,20,MatrixLayout.CENTER_ALIGN));
 		_setBackground(decorator.getSectionBackground());
 	}
 }

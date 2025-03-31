@@ -36,14 +36,12 @@ public class ThmControls
 	
 	public ThmControls()
 	{
-		pFilters = new JPanel(new MatrixLayout(1,0,0));
+		pFilters = new JPanel(new MatrixLayout(1,0,0,MatrixLayout.LEFT_ALIGN));
 		pFilters.setBackground(MyColor.random());
 
-		pLabels = new JPanel(new MatrixLayout(1,0,0));
+		pLabels = new JPanel(new MatrixLayout(1,0,0,MatrixLayout.LEFT_ALIGN));
 
 		splitPane = new MySplitPane(MySplitPane.HORIZONTAL,pFilters,pLabels);
-		splitPane.setDividerSize(1);
-		splitPane.setDividerLocation(100);
 		
 		contentPane = new  MyBorderLayout();
 		contentPane.add(splitPane.c(),BorderLayout.CENTER);
@@ -64,6 +62,9 @@ public class ThmControls
 	public void setDecorator(ThmControlsDecorator decorator)
 	{
 		this.decorator = decorator;
+
+		splitPane.setDividerSize(1);
+		
 		splitPane.setDividerLocation(decorator.getDividerLocation());
 		splitPane.setDividerColor(decorator.getDividerColor());
 		pFilters.setBackground(decorator.getFiltersBackground());
