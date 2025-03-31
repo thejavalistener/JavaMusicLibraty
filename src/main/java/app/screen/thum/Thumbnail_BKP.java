@@ -33,7 +33,7 @@ import thejavalistener.fwk.util.MyColor;
 import thejavalistener.fwk.util.MyNumber;
 import thejavalistener.fwk.util.string.MyString;
 
-public class Thumbnail 
+public class Thumbnail_BKP 
 {
 	private Album album;
 	
@@ -48,9 +48,9 @@ public class Thumbnail
 
 	private ThmDecorator decorator = null;
 	
-	public Thumbnail()
+	public Thumbnail_BKP(int thumbSize)
 	{
-		tmbImage = new ThumbImage();
+		tmbImage = new ThumbImage(thumbSize);
 		
 		contentPane = new JPanel(new GridLayout2(2,1,0,0));
 		
@@ -82,7 +82,6 @@ public class Thumbnail
 	{
 		this.decorator = decorator;
 
-		tmbImage.setImageSize(decorator.getImageSize());
 		grid.setBackground(decorator.getThumbnailBackground());
 		contentPane.setBackground(decorator.getThumbnailBackground());		
 		decorator.decoreTitle(lnkTitle);
@@ -93,6 +92,7 @@ public class Thumbnail
 		lnkReaYear.c().validate();
 		decorator.decoreRecordedYear(lnkRecYear);
 		lnkRecYear.c().validate();
+
 	}
 	
 	public void setAlbum(Album a)
@@ -150,16 +150,12 @@ public class Thumbnail
 	{
 		private int sizePx;
 
-		public ThumbImage()
+		public ThumbImage(int sizePx)
 		{
+			this.sizePx=sizePx;
+			this.setPreferredSize(new Dimension(sizePx,sizePx));
 			setOpaque(true);
 			setBackground(MyColor.random());
-		}
-		
-		public void setImageSize(int px)
-		{
-			this.sizePx = px;
-			this.setPreferredSize(new Dimension(px,px));
 		}
 
 		public void load()
@@ -251,9 +247,9 @@ public class Thumbnail
 	
 	public static void main(String[] args)
 	{
-		Thumbnail th = new Thumbnail();
+		Thumbnail_BKP th = new Thumbnail_BKP(350);
 		th.setDecorator(new ThmDecoratorImple());
-		th.setAlbum(Thumbnail.createDemoAlbum());
+		th.setAlbum(Thumbnail_BKP.createDemoAlbum());
 		MyTestUI.test(th.c()).pack().run();
 	}
 

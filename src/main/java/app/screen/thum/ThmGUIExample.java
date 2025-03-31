@@ -32,39 +32,39 @@ public class ThmGUIExample
 
 		ThmSection section = gui.getPage().createSection("The Beatles");
 		
-		Thumbnail t = new Thumbnail(300);
+		Thumbnail t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 		
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 	
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 		
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 		
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 		
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 		
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 		
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 		
-		t = new Thumbnail(300);
+		t = new Thumbnail();
 		t.setAlbum(Thumbnail.createDemoAlbum());
 		section.add(t);
 				

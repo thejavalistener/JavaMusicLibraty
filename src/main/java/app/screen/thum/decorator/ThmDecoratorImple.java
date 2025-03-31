@@ -61,5 +61,10 @@ public class ThmDecoratorImple implements ThmDecorator
 		i.top = 0;
 		i.bottom = 3;
 	}
-	
+
+	@Override
+	public int getImageSize()
+	{
+		return 300;
+	}
 }

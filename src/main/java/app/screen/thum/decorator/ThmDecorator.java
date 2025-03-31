@@ -11,4 +11,5 @@ public interface ThmDecorator
 	public void decoreArtist(MyLink lnk);
 	public void decoreReleasedYear(MyLink lnk);
 	public void decoreRecordedYear(MyLink lnk);
+	public int getImageSize();
 }

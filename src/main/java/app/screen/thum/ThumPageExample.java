@@ -47,7 +47,7 @@ public class ThumPageExample
 		@Override
 		public void onClick(MyTestUIInterface t)
 		{
-			Thumbnail th = new Thumbnail(350);
+			Thumbnail th = new Thumbnail();
 			th.setAlbum(Thumbnail.createDemoAlbum());
 			section.add(th);
 		}
