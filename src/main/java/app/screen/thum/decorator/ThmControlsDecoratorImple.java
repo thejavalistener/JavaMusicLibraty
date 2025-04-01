@@ -6,25 +6,21 @@ import java.awt.Insets;
 
 import thejavalistener.fwk.awt.link.MyLink;
 
+
 public class ThmControlsDecoratorImple implements ThmControlsDecorator
 {
-	private Color divider = new Color(51,51,51);
-	private Color background = new Color(18,18,18);
-	private Color unhighlight = new Color(173,173,173);
-	private Color highlight = new Color(249,249,249);
-	private Color shadow = new Color(49,49,49);
-	private Font font = new Font("Calibri",Font.PLAIN,14);
+	private Font font = new Font(ThmColors.fontName,Font.PLAIN,14);
 	
 	@Override
 	public Color getFiltersBackground()
 	{
-		return background;
+		return ThmColors.background;
 	}
 
 	@Override
 	public Color getLabelsBackground()
 	{
-		return background;
+		return ThmColors.background;
 	}
 
 	@Override
@@ -36,7 +32,7 @@ public class ThmControlsDecoratorImple implements ThmControlsDecorator
 	@Override
 	public Color getDividerColor()
 	{
-		return divider;
+		return ThmColors.divider;
 	}
 	
 	@Override
@@ -51,19 +47,16 @@ public class ThmControlsDecoratorImple implements ThmControlsDecorator
 		// unselected
 		
 		// foreground
-		lnk.getStyle().linkForegroundUnselected = unhighlight;
+		lnk.getStyle().linkForegroundUnselected = ThmColors.unhighlight;
 
 		// background
-		lnk.getStyle().linkBackgroundUnselected = background;
+		lnk.getStyle().linkBackgroundUnselected = ThmColors.background;
 		
 		// rollover foreground
-		lnk.getStyle().linkForegroundRolloverUnselected = unhighlight;
+		lnk.getStyle().linkForegroundRolloverUnselected = ThmColors.unhighlight;
 
 		// rollover background
-		lnk.getStyle().linkBackgroundRolloverUnselected = background;
-		
-		
-		
+		lnk.getStyle().linkBackgroundRolloverUnselected = ThmColors.background;
 		
 		lnk.c().revalidate();
 	}	
@@ -81,36 +74,36 @@ public class ThmControlsDecoratorImple implements ThmControlsDecorator
 		// unselected
 		
 			// foreground
-			lnk.getStyle().linkForegroundUnselected = unhighlight;
+			lnk.getStyle().linkForegroundUnselected = ThmColors.unhighlight;
 
 			// background
-			lnk.getStyle().linkBackgroundUnselected = background;
+			lnk.getStyle().linkBackgroundUnselected = ThmColors.background;
 			
 			// rollover foreground
-			lnk.getStyle().linkForegroundRolloverUnselected = highlight;
+			lnk.getStyle().linkForegroundRolloverUnselected = ThmColors.unhighlight;
 	
 			// rollover background
-			lnk.getStyle().linkBackgroundRolloverUnselected = shadow;
+			lnk.getStyle().linkBackgroundRolloverUnselected = ThmColors.shadow;
 
 		// selected
 			
 			// foreground
-			lnk.getStyle().linkForegroundSelected = highlight;
+			lnk.getStyle().linkForegroundSelected = ThmColors.highlight;
 
 			// background
-			lnk.getStyle().linkBackgroundSelected = background;
+			lnk.getStyle().linkBackgroundSelected = ThmColors.background;
 			
 			// rollover foreground
-			lnk.getStyle().linkForegroundRolloverSelected = highlight;
+			lnk.getStyle().linkForegroundRolloverSelected = ThmColors.highlight;
 	
 			// rollover background
-			lnk.getStyle().linkBackgroundRolloverSelected = background;
-
+			lnk.getStyle().linkBackgroundRolloverSelected = ThmColors.background;
 		
 		lnk.getStyle().setLinkFont(font);
 
 	}
 
+	
 	@Override
 	public String getDefaultFilterTitle()
 	{

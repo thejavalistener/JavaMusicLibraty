@@ -11,55 +11,85 @@ public class ThmDecoratorImple implements ThmDecorator
 	@Override
 	public Color getThumbnailBackground()
 	{
-		return new Color(29,29,29);
+		return ThmColors.thumbnailBackground;
 	}
 	
 	@Override
 	public void decoreTitle(MyLink lnk)
 	{
-		lnk.getStyle().linkForegroundUnselected = new Color(249,249,249);
-		lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,16));
-		Insets i = lnk.getStyle().linkBackgroundInsets;
-		i.top = 7;
+		lnk.getStyle().linkForegroundUnselected = ThmColors.highlight;
+		lnk.getStyle().setLinkFont(new Font(ThmColors.fontName,Font.PLAIN,16));
+//		Insets i = lnk.getStyle().linkBackgroundInsets;
+//		i.top = 7;
+		
+		Insets i = lnk.getStyle().linkInsets;
+		i.top = 5;
+		i.bottom = 0;
 	}				
 	
 	@Override
 	public void decoreArtist(MyLink lnk)
 	{
-		lnk.getStyle().linkForegroundUnselected = new Color(173,173,173);
-		lnk.getStyle().linkForegroundRolloverUnselected = new Color(249,249,249);
-		lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,14));
-		lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
-		lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
-		Insets i = lnk.getStyle().linkBackgroundInsets;
-		i.top = 0;
+		
+		decoreReleasedYear(lnk);
+		Insets i = lnk.getStyle().linkInsets;
 		i.bottom = 3;
+		i.top = 0;
+		
+//		lnk.getStyle().linkForegroundUnselected = ThmColors.unhighlight;
+//		lnk.getStyle().linkForegroundRolloverUnselected = ThmColors.shadow;
+//		lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
+//		lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
+//
+//		lnk.getStyle().setLinkFont(new Font(ThmColors.fontName,Font.PLAIN,14));
+//		Insets i = lnk.getStyle().linkBackgroundInsets;
+//		i.top = 0;
+//		i.bottom = 3;
+
+		
+		
+//		lnk.getStyle().linkForegroundUnselected = ThmColors.unhighlight;
+//		lnk.getStyle().linkForegroundRolloverUnselected = ThmColors.highlight;
+//		lnk.getStyle().setLinkFont(new Font(ThmColors.fontName,Font.PLAIN,14));
+//		lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
+//		lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
+//		Insets i = lnk.getStyle().linkBackgroundInsets;
+//		i.top = 0;
+//		i.bottom = 3;
 	}
 		
 	@Override
 	public void decoreReleasedYear(MyLink lnk)
 	{
-		lnk.getStyle().linkForegroundUnselected = new Color(173,173,173);
-		lnk.getStyle().linkForegroundRolloverUnselected = new Color(249,249,249);
-		lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,14));
-		lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
-		lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
+		// unselected
+			lnk.getStyle().linkForegroundUnselected = ThmColors.unhighlight;
+			lnk.getStyle().linkForegroundRolloverUnselected = ThmColors.highlight;
+			lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
+			lnk.getStyle().setLinkBackgroundRolloverUnselected(ThmColors.shadow);
+
+			lnk.getStyle().setLinkFont(new Font(ThmColors.fontName,Font.PLAIN,14));
+
 		Insets i = lnk.getStyle().linkBackgroundInsets;
-		i.top = 0;
-		i.bottom = 3;
+		i.top = 3;
+		i.bottom = 0;
+		
+		i = lnk.getStyle().linkInsets;
+		i.bottom = 7;
+		
 	}
 	
 	@Override
 	public void decoreRecordedYear(MyLink lnk)
 	{
-		lnk.getStyle().linkForegroundUnselected = new Color(173,173,173);
-		lnk.getStyle().linkForegroundRolloverUnselected = new Color(249,249,249);
-		lnk.getStyle().setLinkFont(new Font("Calibri",Font.PLAIN,14));
-		lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
-		lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
-		Insets i = lnk.getStyle().linkBackgroundInsets;
-		i.top = 0;
-		i.bottom = 3;
+		decoreReleasedYear(lnk);
+//		lnk.getStyle().linkForegroundUnselected = ThmColors.unhighlight;
+//		lnk.getStyle().linkForegroundRolloverUnselected = ThmColors.highlight;
+//		lnk.getStyle().setLinkFont(new Font(ThmColors.fontName,Font.PLAIN,14));
+//		lnk.getStyle().setLinkBackgroundUnselected(getThumbnailBackground());
+//		lnk.getStyle().setLinkBackgroundRolloverUnselected(getThumbnailBackground());
+//		Insets i = lnk.getStyle().linkBackgroundInsets;
+//		i.top = 0;
+//		i.bottom = 3;
 	}
 
 	@Override
